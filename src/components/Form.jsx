@@ -7,20 +7,20 @@ export const Form =()=>{
       Address:"",
       Department:"",
       Salary:"",
-    
-
-
     })
+const [array ,setArray] =useState([])
 
     const handleChange = (e)=>{
-        console.log(e.target.value,e.target.name)
+       // console.log(e.target.value,e.target.name)
         const {name , value} = e.target
-        setForm({...form, [name]:value})
+        setForm({...form, [name]: checkbox ? e.target.checked : value})
     }
 
     const handleSubmit =(e)=>{
         e.preventDefault()
         console.log(form)
+        console.log("array-",[...array,form])
+        setArray([...array,form])
     }
     return(
         <div >
@@ -48,7 +48,7 @@ export const Form =()=>{
                 <input onChange={handleChange} name="Salary" type="number" placeholder="Enter Salary" /> 
                 <br/>
                 <label>MaritalState: </label>
-                <input onChange={handleChange} name="Married" type="checkbox" value="true"/> 
+                <input onChange={handleChange} name="Married" type="checkbox" value="Married"/> 
                 <label for="Married">Married</label>
                 <input onChange={handleChange} name="NotMarried" type="checkbox" value="true"/> 
                 <label for="NotMarried">NotMarried</label>
