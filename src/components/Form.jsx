@@ -1,19 +1,24 @@
-import { useState } from "react"
+import { useState,useRef } from "react"
 
 export const Form =()=>{
-    const [form, setForm] = useState({
+   var [form, setForm] = useState({
       Name:"",
       Age:"",
       Address:"",
       Department:"",
       Salary:"",
+      Married:"",
+      NotMarried:""
     })
 const [array ,setArray] =useState([])
+const ref= useRef(null)
 
     const handleChange = (e)=>{
+        console.log(ref.current.files[0])
        // console.log(e.target.value,e.target.name)
-        const {name , value} = e.target
-        setForm({...form, [name]: checkbox ? e.target.checked : value})
+        const {name , value ,checked,type} = e.target
+        value = type === "checkbox"? checked:value
+        setForm({...form, [name]:  value})
     }
 
     const handleSubmit =(e)=>{
@@ -22,6 +27,7 @@ const [array ,setArray] =useState([])
         console.log("array-",[...array,form])
         setArray([...array,form])
     }
+    const { Name,Age,Address,Department,Salary,Married,NotMarried  } = form
     return(
         <div >
             <form onSubmit={handleSubmit}>
@@ -48,16 +54,16 @@ const [array ,setArray] =useState([])
                 <input onChange={handleChange} name="Salary" type="number" placeholder="Enter Salary" /> 
                 <br/>
                 <label>MaritalState: </label>
-                <input onChange={handleChange} name="Married" type="checkbox" value="Married"/> 
+                <input onChange={handleChange} name="Married" type="checkbox" checked={Married}/> 
                 <label for="Married">Married</label>
-                <input onChange={handleChange} name="NotMarried" type="checkbox" value="true"/> 
+                <input onChange={handleChange} name="NotMarried" type="checkbox" checked={NotMarried}/> 
                 <label for="NotMarried">NotMarried</label>
+                <br/>
+                <input ref={ref} type="file" onChange={handleChange} />
                 <br/>
                 <input type="submit"/>
             </form>
-            <div >
-                
-            </div>
+           
         </div>
     )
 }
