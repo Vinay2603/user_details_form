@@ -1,0 +1,14 @@
+{
+  "array": [
+    {
+      "Name":"achall",
+      "Age":"",
+      "Address":"",
+      "Department":"",
+      "Salary":"",
+      "Married":"",
+      "NotMarried":""
+    }
+  ]
+  
+}
